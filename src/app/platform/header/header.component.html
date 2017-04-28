@@ -1,0 +1,26 @@
+<md-toolbar >
+  <img src="retailzoom.svg" class="logo">
+  <md-toolbar-row class="narrower">
+  <span class="lettering smaller left-pad-10">Customer Churn Prevention</span>
+    <span class="spacer"></span>
+    <span>      
+      <md-menu #appMenu="mdMenu">
+        <md-icon class="person">person</md-icon>
+        <hr class="light-grey">
+        <button md-menu-item class="narrow" (click)="logout()"> 
+          <md-icon class="no-margin">clear</md-icon>
+          <span class="lettering smallest">Log Out</span> 
+        </button>
+        <button md-menu-item>
+          <md-icon class="no-margin">build</md-icon>
+          <span class="lettering smallest">Settings</span>   
+        </button>
+      </md-menu>
+
+      <button md-icon-button [mdMenuTriggerFor]="appMenu">
+        <span class="lettering smallest" > {{username}}</span>
+        <md-icon size="12" class="no-margin">arrow_drop_down</md-icon>
+      </button>
+    </span>
+  </md-toolbar-row>
+</md-toolbar>

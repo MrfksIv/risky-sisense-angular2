@@ -1,0 +1,54 @@
+.width-400 {
+     width: 400px;
+}
+
+.width-100 {
+    width: 100px;
+}
+.center {
+    display: block;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.border-shadow {
+    border: 1px solid #eee;
+    box-shadow: 10px 10px 5px #ddd;
+    border-radius: 5px;
+}
+
+.padding-top {
+    padding-top: 10px;
+}
+
+.padding-bottom{
+    padding-bottom: 10px;
+}
+.width-90-input {
+  width: 90%;
+  margin: auto;
+}
+
+.width-75-input {
+  width: 75%;
+  margin: auto;
+}
+
+.logo {
+    width: 250px;
+    display:block;
+    margin: 0 auto;
+}
+
+md-input-container {
+    font-size: 13px;
+    
+}
+
+md-tab {
+    font-size: 14px;
+}
+
+td {
+    text-align: center;
+}

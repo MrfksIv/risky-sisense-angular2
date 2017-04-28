@@ -1,0 +1,15 @@
+<md-card>
+  <div class="indicator-container">
+    <div  [ngClass]="{'loading': loading}">
+      <span class="primary-title"> {{primaryTitle}}</span>
+      <span class= "primary-figure"> {{primary | currency:'EUR':true:'1.0-0'}}</span>
+      <hr>
+      <span class= "secondary-title"> From  <span class= "secondary-figure"> {{secondary}} </span>Customers</span>
+    </div>
+    <div>
+      <md-spinner *ngIf="loading" mode="indeterminate"></md-spinner>
+    </div>
+  </div>
+  
+  <!--<span >loading... </span>-->
+</md-card>

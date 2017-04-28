@@ -1,0 +1,31 @@
+
+<md-card id="card">
+  <md-card-header>
+    <md-card-subtitle>
+      {{name}}
+    </md-card-subtitle>
+  </md-card-header>
+  <md-card-content>
+    <md-slider
+            class="example-margin"
+            [disabled]="disabled"
+            [invert]="invert"
+            [max]="max"
+            [min]="min"
+            [step]="step"
+            [thumb-label]="thumbLabel"
+            [tick-interval]="tickInterval"
+            [value]="value"
+            [vertical]="vertical"
+            (change)="emitValue()"
+            [(ngModel)]="selectedValue">
+
+        </md-slider>
+        <md-input-container class="example-full-width">
+            <input mdInput [value]="selectedValue || '0' | currency:'EUR':true:'1.0-0'" (change)="setValue(v)" #v>
+        </md-input-container>
+  </md-card-content>
+
+</md-card>
+<br>
+

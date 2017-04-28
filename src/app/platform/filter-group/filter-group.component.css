@@ -1,0 +1,26 @@
+.filter-container {
+    display: block;
+    /*width: 95%;*/
+    min-width: 95%;
+    margin: auto;
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+.filter-container-parent {
+    display: block;
+    width: 433.33px;
+    min-width:96%;
+    height: auto;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+.hidden {
+    display: none;
+}
+
+md-card-subtitle.reduced-bottom-margin {
+    margin-bottom: 1px;
+}
+

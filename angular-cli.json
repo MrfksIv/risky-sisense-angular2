@@ -18,9 +18,14 @@
       "tsconfig": "tsconfig.json",
       "prefix": "rz",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "bootstrap.min.css",
+        "bootstrap-theme.min.css",
+        "rz-theme.scss"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/hammerjs/hammer.min.js"
+      ],
       "environments": {
         "source": "environments/environment.ts",
         "dev": "environments/environment.ts",

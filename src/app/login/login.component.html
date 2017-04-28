@@ -1,0 +1,50 @@
+
+<div class="center border-shadow width-400 padding-bottom">
+<img src="retailzoom.svg" class="logo">
+<md-tab-group class="center ">
+  <md-tab label="Log In" color="warn">
+
+    <form novalidate #form="ngForm" (submit)="form.valid && authenticate(form.value)">
+    <table class="width-75-input padding-top" cellspacing="0">
+      <tr>
+        <td>
+          <md-input-container class="width-90-input">
+            <input mdInput placeholder="username" name="username" ngModel value="" required>
+          </md-input-container>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <md-input-container class="width-90-input ">
+            <input mdInput placeholder="password" name="password" ngModel type="password" value="" required>
+            
+          </md-input-container>
+        </td>
+      </tr>
+    </table>
+    
+    <br>
+    <button md-raised-button color="primary" class="center" type="submit">
+      Log In
+    </button>
+    </form>
+
+  </md-tab>
+  <md-tab label="Reset Password">
+    <h4>Some more tab content</h4>
+    <p>...</p>
+  </md-tab>
+</md-tab-group>
+</div>
+
+
+<button md-raised-button color="primary">
+    Primary
+  </button>
+  <button md-raised-button color="accent">
+    Accent
+  </button>
+  <button md-raised-button color="warn">
+    tttt
+  </button>
+

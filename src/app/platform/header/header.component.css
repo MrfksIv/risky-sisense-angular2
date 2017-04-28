@@ -1,0 +1,47 @@
+.spacer {
+  flex: 1 1 auto;
+  font-size: 5px;
+}
+
+.logo {
+    width: 250px;
+    display:block;
+    /*margin: 0 auto;*/
+}
+
+.narrower {
+    height: 15px;
+    padding-bottom: 15px;
+}
+
+span.lettering.smaller {
+    font-size: 14px;
+}
+
+span.smallest {
+    font-size: 11px;
+    padding-bottom: 15px;
+}
+
+.left-pad-10 {
+    padding-left: 10px;
+}
+
+md-icon.no-margin {
+    margin: 0;
+}
+
+md-icon.person {
+    display: block;
+    margin: 0 auto;
+    color: #b6b6b6;
+}
+
+hr.light-grey {
+    color: #eee;
+}
+
+md-menu-item.narrow.mat-menu-item {
+    padding-left: 7px;
+    padding-right: 7px;
+}

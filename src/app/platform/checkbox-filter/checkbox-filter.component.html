@@ -1,0 +1,24 @@
+<md-card id="card">
+  <md-card-header>
+    <md-card-subtitle>
+      {{name}}
+    </md-card-subtitle>
+  </md-card-header>
+  <md-card-content>
+    <section class="example-section">
+      <div class="custom">
+        <md-checkbox class="example-margin md-checkbox-small"
+          *ngFor="let filter of checkBoxValues"  
+          [(ngModel)]="filter.value"
+          (change)="emitValues()">
+            {{filter.label}}
+        </md-checkbox>
+        <md-checkbox class="example-margin"
+          [(ngModel)]="selectAll"
+          (change)="toggleAll()">
+            &nbsp;
+        </md-checkbox>
+      </div>
+    </section>
+  </md-card-content>
+</md-card>

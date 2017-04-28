@@ -1,0 +1,89 @@
+<md-card class="filter-container-parent">
+  <md-card-header>
+    <md-card-title>
+      Filters
+    </md-card-title>
+  </md-card-header>
+  <md-card-content>
+
+    <md-card class="filter-container">
+      <md-card-header>
+        <md-card-subtitle class="reduced-bottom-margin">
+          <md-slide-toggle
+                [name]="'RFM Filters'"
+                class="example-margin"
+                [color]="warn"
+                [checked]="avgSpendingFilterEnabled"
+                [(ngModel)]="avgSpendingFilterEnabled">
+              Average Spending Filter
+            </md-slide-toggle>
+        </md-card-subtitle>
+      </md-card-header>
+      <md-card-content>
+        <rz-slider-filter
+          [ngClass]= "{'hidden': !avgSpendingFilterEnabled}"
+          [name]="'Average Spending'"
+          [min]= "'0'"
+          [max]="'2000'"
+          [step]="'10'"
+          (sliderValueChanged)="getSalesSliderValue($event)">
+        </rz-slider-filter>
+      </md-card-content>
+    </md-card>
+
+    <md-card class="filter-container">
+      <md-card-header>
+        <md-card-subtitle class="reduced-bottom-margin">
+            <md-slide-toggle
+                [name]="'RFM Filters'"
+                class="example-margin"
+                [color]="warn"
+                [checked]="rfmFiltersEnabled"
+                [(ngModel)]="rfmFiltersEnabled">
+              RFM Filters
+            </md-slide-toggle>
+        </md-card-subtitle>
+      </md-card-header>
+      <md-card-content>
+        <rz-checkbox-filter *ngFor = 'let filter of RFMFiltersArray'
+          [name] = "filter.name"
+          [ngClass]= "{'hidden': !rfmFiltersEnabled}"
+          [checkBoxValues] = "filter.options"
+          (selectedValues) = "filter.setSelectedValues($event); getSummaryStats()">
+        </rz-checkbox-filter>
+      </md-card-content>
+    </md-card>
+
+     <md-card class="filter-container">
+      <md-card-header>
+        <md-card-subtitle class="reduced-bottom-margin">
+            <md-slide-toggle
+                [name]="'Fresh Visits Filter'"
+                class="example-margin"
+                [color]="warn"
+                [checked]="freshVisitsFilterEnabled"
+                [(ngModel)]="freshVisitsFilterEnabled">
+              Fresh Visits Filters
+            </md-slide-toggle>
+        </md-card-subtitle>
+      </md-card-header>
+      <md-card-content>
+        <rz-checkbox-filter *ngFor = 'let filter of RFMFiltersArray'
+          [name] = "filter.name"
+          [ngClass]= "{'hidden': !freshVisitsFilterEnabled}"
+          [checkBoxValues] = "filter.options"
+          (selectedValues) = "filter.setSelectedValues($event); getSummaryStats()">
+        </rz-checkbox-filter>
+      </md-card-content>
+    </md-card>
+
+    <md-spinner 
+      *ngIf="loadingQuery"
+      [color]="accent">
+    </md-spinner>
+  </md-card-content>
+  <md-card-actions>
+    <button md-raised-button>Reset Query</button>
+    
+  </md-card-actions>
+</md-card>

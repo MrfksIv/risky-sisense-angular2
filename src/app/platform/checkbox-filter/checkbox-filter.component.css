@@ -1,0 +1,33 @@
+h4 {
+    margin: 3px 10px;
+}
+
+#card {
+    /*height: 40px;*/
+    width: 90%;
+    box-sizing: border-box;
+    padding: 6px;
+    display: inline-block;
+    margin:5px;
+    font-size: 12px;
+}
+
+md-card-subtitle {
+  margin-bottom: 1px;
+  font-size:11px;
+  /*font-family: 'PT Sans Narrow', sans-serif;*/
+}
+
+
+.example-margin {
+  margin: 0 7px;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  font-size: 10px;
+}
+
+

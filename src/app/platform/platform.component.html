@@ -1,0 +1,48 @@
+
+ <rz-header></rz-header>
+
+<!--<md-grid-list cols="4" rowHeight="100px">
+  <md-grid-tile
+      *ngFor="let tile of tiles"
+      [colspan]="tile.cols"
+      [rowspan]="tile.rows"
+      [style.background]="tile.color">
+    {{tile.text}}
+  </md-grid-tile>
+</md-grid-list>-->
+
+<md-grid-list cols="10" rowHeight="100px">
+  <md-grid-tile
+      [colspan]="'3'"
+      [rowspan]="'8'"
+      [style.background]="'lightblue'">
+    <rz-filter-group 
+      (doneQuery)="getData($event)" 
+      (doneIndicatorQuery)="getIndicatorData($event)"
+      (indicatorQueryStatus)="getIndicatorQueryStatus($event)"></rz-filter-group>
+  </md-grid-tile>
+   <md-grid-tile id="test"
+      [colspan]="'2'"
+      [rowspan]="'2'"
+      [style.background]="'lightpink'">
+      <rz-indicator
+        [primaryTitle]="'Potential Sales Loss'"
+        [primary] = "indicatorResults?.lostSales"
+        [secondary]= "indicatorResults?.lostCusts"
+        [loading]="indicatorQueryInProgress"
+      ></rz-indicator>
+  </md-grid-tile>
+  <!--<md-grid-tile
+      [colspan]="'1'"
+      [rowspan]="'2'"
+      [style.background]="'lightgreen'">
+      <rz-table [tableData] = "queryResults"></rz-table>
+  </md-grid-tile>-->
+ 
+  <md-grid-tile
+      [colspan]="'2'"
+      [rowspan]="'1'"
+      [style.background]="'#DDBDF1'">
+    four
+  </md-grid-tile>
+</md-grid-list>
