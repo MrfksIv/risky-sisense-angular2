@@ -21,7 +21,7 @@ export class RFMFilter {
         this.resetFilter();
     }
 
-    setSelectedValues(vals: String[]) {
+    setSelectedValues(vals: String[]): void {
         this.selectedValues = vals;
         if (this.selectedValues.length < this.options.length) {
             this.enabled = true;

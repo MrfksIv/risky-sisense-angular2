@@ -7,9 +7,10 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class IndicatorComponent implements OnInit {
 
-  @Input() primary: String;
-  @Input() secondary: String;
-  @Input() primaryTitle: String;
+  @Input() primary: string;
+  @Input() secondary: string;
+  @Input() primaryTitle: string;
+  @Input() secondaryTitle: string;
 
   @Input() loading: Boolean = true;
 

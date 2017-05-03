@@ -17,3 +17,9 @@ md-grid-list.mat-grid-list div md-grid-tile.mat-grid-tile figure.mat-figure {
 #test {
   align-items: center;
 }
+
+md-card-subtitle.reduced-bottom-margin md-slide-toggle span.mat-slide-toggle-content {
+    font-size: 13px;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+}

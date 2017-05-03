@@ -12,6 +12,7 @@ export class SliderFilterComponent implements OnInit {
   @Input() min: string;
   @Input() step: String;
   @Input() value: String = '0';
+  @Input() type: String;
 
   @Input() autoTicks: Boolean = true;
   @Input() disabled: Boolean = false;
@@ -38,8 +39,7 @@ export class SliderFilterComponent implements OnInit {
     let tempVal = parseFloat(v.value) || parseFloat(v.value.substr(1, v.value.length));
     if (tempVal > parseFloat(this.max)) {
       this.selectedValue = parseFloat(this.max);
-    }
-    else if (tempVal < parseFloat(this.min)) {
+    } else if (tempVal < parseFloat(this.min)) {
       this.selectedValue = parseFloat(this.min);
     } else {
       this.selectedValue = tempVal;

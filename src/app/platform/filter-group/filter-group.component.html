@@ -22,11 +22,12 @@
       <md-card-content>
         <rz-slider-filter
           [ngClass]= "{'hidden': !avgSpendingFilterEnabled}"
-          [name]="'Average Spending'"
-          [min]= "'0'"
-          [max]="'2000'"
+          [name]="avgSpending.name"
+          [min]= "avgSpending.minVal"
+          [max]="avgSpending.maxVal"
           [step]="'10'"
-          (sliderValueChanged)="getSalesSliderValue($event)">
+          [type]="avgSpending.type"
+          (sliderValueChanged)="avgSpending.setSelectedValue($event); getSummaryStats()">
         </rz-slider-filter>
       </md-card-content>
     </md-card>
@@ -68,12 +69,15 @@
         </md-card-subtitle>
       </md-card-header>
       <md-card-content>
-        <rz-checkbox-filter *ngFor = 'let filter of RFMFiltersArray'
-          [name] = "filter.name"
+        <rz-slider-filter *ngFor="let filter of FreshFiltersArray"
           [ngClass]= "{'hidden': !freshVisitsFilterEnabled}"
-          [checkBoxValues] = "filter.options"
-          (selectedValues) = "filter.setSelectedValues($event); getSummaryStats()">
-        </rz-checkbox-filter>
+          [name]="filter.name"
+          [min]= "filter.minVal"
+          [max]="filter.maxVal"
+          [type]="filter.type"
+          [step]="'1'"
+          (sliderValueChanged)="filter.setSelectedValue($event); getSummaryStats()">
+        </rz-slider-filter>
       </md-card-content>
     </md-card>
 
@@ -83,7 +87,7 @@
     </md-spinner>
   </md-card-content>
   <md-card-actions>
-    <button md-raised-button>Reset Query</button>
+    <button md-raised-button (click)="getTableData()">Load table</button>
     
   </md-card-actions>
 </md-card>

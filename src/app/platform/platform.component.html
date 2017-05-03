@@ -15,7 +15,7 @@
   <md-grid-tile
       [colspan]="'3'"
       [rowspan]="'8'"
-      [style.background]="'lightblue'">
+      [style.background]="'white'">
     <rz-filter-group 
       (doneQuery)="getData($event)" 
       (doneIndicatorQuery)="getIndicatorData($event)"
@@ -24,13 +24,20 @@
    <md-grid-tile id="test"
       [colspan]="'2'"
       [rowspan]="'2'"
-      [style.background]="'lightpink'">
-      <rz-indicator
-        [primaryTitle]="'Potential Sales Loss'"
-        [primary] = "indicatorResults?.lostSales"
-        [secondary]= "indicatorResults?.lostCusts"
-        [loading]="indicatorQueryInProgress"
-      ></rz-indicator>
+      [style.background]="'white'">
+        <rz-indicator
+        [primaryTitle]="avgSalesIndicator?.primaryTitle"
+        [secondaryTitle]="avgSalesIndicator?.secondaryTitle"
+        [primary] = "avgSalesIndicator?.getPrimaryValue()"
+        [secondary]= "avgSalesIndicator?.getSecondaryValue()"
+        [loading]="avgSalesIndicator?.getQueryStatus()">
+      </rz-indicator>
+  </md-grid-tile>
+  <md-grid-tile
+      [colspan]="'5'"
+      [rowspan]="'8'"
+      [style.background]="'#white'">
+    three
   </md-grid-tile>
   <!--<md-grid-tile
       [colspan]="'1'"
@@ -41,8 +48,20 @@
  
   <md-grid-tile
       [colspan]="'2'"
-      [rowspan]="'1'"
-      [style.background]="'#DDBDF1'">
-    four
+      [rowspan]="'2'"
+      [style.background]="'#white'">
+      <rz-indicator
+        [primaryTitle]="freshSalesIndicator?.primaryTitle"
+        [secondaryTitle]="freshSalesIndicator?.secondaryTitle"
+        [primary] = "freshSalesIndicator?.getPrimaryValue()"
+        [loading]="avgSalesIndicator?.getQueryStatus()">
+      </rz-indicator>
   </md-grid-tile>
+  <md-grid-tile
+      [colspan]="'2'"
+      [rowspan]="'2'"
+      [style.background]="'#DDBDF1'">
+    five
+  </md-grid-tile>
+  
 </md-grid-list>

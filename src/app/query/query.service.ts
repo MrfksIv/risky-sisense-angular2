@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { GlobalVars } from '../global-vars';
 import { RFMFilter } from '../platform/checkbox-filter/rfm-filter.class';
+import { SliderFilter } from '../platform/slider-filter/slider-filter.class';
 
 
 
@@ -25,7 +26,7 @@ export class QueryService {
   }
 
 
-  buildSQLQuery(RFMFilters: RFMFilter[], selectedColumns: String[] = ['*'], avgSalesVal = 0, onlyRisky = true ): String  {
+  buildSQLQuery(RFMFilters: RFMFilter[], FreshFilters: SliderFilter[], selectedColumns: String[] = ['*'], avgSalesVal = 0, onlyRisky = true ): String  {
 
     let whereClauseInitiated: Boolean = false;
 
@@ -39,6 +40,17 @@ export class QueryService {
         whereClauseInitiated = true;
       }
     });
+
+    FreshFilters.forEach( elem => {
+      if (elem.enabled === true) {
+        sqlQueryString = `${sqlQueryString} ${whereClauseInitiated ? 'AND ' : 'WHERE '}`;
+        sqlQueryString = `${sqlQueryString} ${elem.tableColumnName} >= ${elem.selectedVal.toString()}`;
+
+        whereClauseInitiated = true;
+      }
+    });
+
+
     if (onlyRisky) {
       sqlQueryString = `${sqlQueryString} ${whereClauseInitiated ? 'AND ' : 'WHERE '} RiskyFlag in (1)`;
       whereClauseInitiated = true;
@@ -48,7 +60,7 @@ export class QueryService {
     return sqlQueryString;
   }
 
-  build
+
 
   buildEncodedUrl(query) {
     let url = `${GlobalVars.QUERY_API_URL}/${GlobalVars.ELASTICUBE_NAME}`;
@@ -59,10 +71,10 @@ export class QueryService {
     return uri;
   }
 
-  getResults(RFMFilters: RFMFilter[], selectedColumns: String[] = ['*'], avgSales: number) {
+  getResults(RFMFilters: RFMFilter[], FreshFilters: SliderFilter[],  selectedColumns: String[] = ['*'], avgSales: number) {
     console.log("(in query.service / getResults) ", avgSales);
 
-    let queryString = this.buildSQLQuery(RFMFilters, selectedColumns, avgSales);
+    let queryString = this.buildSQLQuery(RFMFilters, FreshFilters, selectedColumns, avgSales);
     let encodedQueryString = this.buildEncodedUrl(queryString);
 
     return this.http.get(encodedQueryString, this.OPTIONS);

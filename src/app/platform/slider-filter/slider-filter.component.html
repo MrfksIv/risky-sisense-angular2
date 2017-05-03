@@ -19,10 +19,12 @@
             [vertical]="vertical"
             (change)="emitValue()"
             [(ngModel)]="selectedValue">
-
         </md-slider>
-        <md-input-container class="example-full-width">
+        <md-input-container *ngIf="type === 'currency'" class="example-full-width">
             <input mdInput [value]="selectedValue || '0' | currency:'EUR':true:'1.0-0'" (change)="setValue(v)" #v>
+        </md-input-container>
+        <md-input-container  *ngIf="type !== 'currency'" class="example-full-width">
+            <input mdInput [value]="selectedValue || '0'" (change)="setValue(v)" #v>
         </md-input-container>
   </md-card-content>
 

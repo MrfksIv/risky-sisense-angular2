@@ -6,6 +6,7 @@ import { TableComponent } from './table/table.component';
 import { IndicatorComponent } from './indicator/indicator.component';
 
 import { QueryService } from '../query/query.service';
+import { Indicator } from './indicator/indicator.class';
 
 @Component({
   selector: 'rz-platform',
@@ -16,27 +17,41 @@ export class PlatformComponent implements OnInit {
 
   private username: String;
   private queryResults: {headers: String[], values: String[]};
-  private indicatorResults: {lostCusts: number, lostSales: number};
-  indicatorQueryInProgress: Boolean = false;
+  private indicatorResults: {lostCusts: number, lostTotalSales: number, lostFreshSales: number};
+
+  private avgSalesIndicator: Indicator;
+  private freshSalesIndicator: Indicator;
+
+  indicatorQueryInProgress: boolean = false;
 
   constructor(private query: QueryService) { }
 
   ngOnInit() {
     this.username = localStorage.getItem('username');
+    this.avgSalesIndicator = new Indicator('Projected Total Sales Loss', 0, 'Customer Count:', 0);
+    this.freshSalesIndicator = new Indicator('Total Fresh Sales', 0, 'In the past period');
   }
 
   getData(queryData){
     this.queryResults = queryData;
-    console.log("Received at platform component:");
+    console.log('Received at platform component:');
     console.log(this.queryResults);
   }
 
-  getIndicatorData(indData) {
-    this.indicatorResults = indData;
-    console.log(this.indicatorResults);
+  getIndicatorData(indData: {lostCusts: number, lostTotalSales: number, lostFreshSales: number}) {
+    this.avgSalesIndicator.setPrimaryValue(indData.lostTotalSales);
+    this.avgSalesIndicator.setSecondaryValue(indData.lostCusts);
+    this.freshSalesIndicator.setPrimaryValue(indData.lostFreshSales);
+    console.log(this.avgSalesIndicator);
   }
 
   getIndicatorQueryStatus(status) {
     this.indicatorQueryInProgress = status;
+    this.updateIndicatorQueryStatus();
+  }
+
+  updateIndicatorQueryStatus() {
+    this.avgSalesIndicator.setQueryStatus(this.indicatorQueryInProgress);
+    this.freshSalesIndicator.setQueryStatus(this.indicatorQueryInProgress);
   }
 }

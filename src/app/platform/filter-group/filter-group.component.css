@@ -4,7 +4,7 @@
     min-width: 95%;
     margin: auto;
     box-sizing: border-box;
-    padding: 15px;
+    padding: 8px;
 }
 
 .filter-container-parent {
@@ -22,5 +22,6 @@
 
 md-card-subtitle.reduced-bottom-margin {
     margin-bottom: 1px;
+    
 }
 
