@@ -18,6 +18,7 @@ export class PlatformComponent implements OnInit {
   private username: String;
   private queryResults: {headers: String[], values: String[]};
   private indicatorResults: {lostCusts: number, lostTotalSales: number, lostFreshSales: number};
+  private tableQueryResults: {headers: String[], values: String[]};
 
   private avgSalesIndicator: Indicator;
   private freshSalesIndicator: Indicator;
@@ -32,26 +33,34 @@ export class PlatformComponent implements OnInit {
     this.freshSalesIndicator = new Indicator('Total Fresh Sales', 0, 'In the past period');
   }
 
-  getData(queryData){
+  getData(queryData): void {
     this.queryResults = queryData;
     console.log('Received at platform component:');
     console.log(this.queryResults);
   }
 
-  getIndicatorData(indData: {lostCusts: number, lostTotalSales: number, lostFreshSales: number}) {
+  getIndicatorData(indData: {lostCusts: number, lostTotalSales: number, lostFreshSales: number}): void {
     this.avgSalesIndicator.setPrimaryValue(indData.lostTotalSales);
     this.avgSalesIndicator.setSecondaryValue(indData.lostCusts);
     this.freshSalesIndicator.setPrimaryValue(indData.lostFreshSales);
     console.log(this.avgSalesIndicator);
   }
 
-  getIndicatorQueryStatus(status) {
+  getTableData(tableData: {headers: String[], values: String[]}) {
+    this.tableQueryResults = tableData;
+  }
+
+  getIndicatorQueryStatus(status): void {
     this.indicatorQueryInProgress = status;
     this.updateIndicatorQueryStatus();
   }
 
-  updateIndicatorQueryStatus() {
+  updateIndicatorQueryStatus(): void {
     this.avgSalesIndicator.setQueryStatus(this.indicatorQueryInProgress);
     this.freshSalesIndicator.setQueryStatus(this.indicatorQueryInProgress);
+  }
+
+  dummyFn() {
+    
   }
 }

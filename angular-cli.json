@@ -19,9 +19,7 @@
       "prefix": "rz",
       "styles": [
         "styles.css",
-        "bootstrap.min.css",
-        "bootstrap-theme.min.css",
-        "rz-theme.scss"
+        "rz-theme.scss"        
       ],
       "scripts": [
         "../node_modules/hammerjs/hammer.min.js"

@@ -20,6 +20,6 @@ export const GlobalVars = Object.freeze({
     RISKY_TABLE_TOTALSALES_COLUMN: 'TotSales',
     RISKY_TABLE_FRESHSALES_COLUMN: 'Total_sales_Current',
     TABLE_DATA_QUERY_COLUMNS: ['cardcode', 'RC_stores', 'TotSales', 'TotVisits',
-        'Meat_Current', 'Bakery_Current', 'Fruit_Current', 'Fish_Current', 'None_Current',
-        'RFM_Current', 'RFM_Lights_Y_Ago', 'RFM_Lights_Previous']
+        'Meat_Current', 'Bakery_Current', 'Fruit_Current', 'Fish_Current',
+        'RFM_Current']
 });
