@@ -10,7 +10,19 @@ export class TableComponent implements OnInit, OnChanges {
   @Input() tableData: {headers: String[], values: String};
   @Input() queryStatus: {success: boolean, inProgress: boolean} = {success: false, inProgress: false};
   @Input() obsPerPage = 15;
-  totalRecords: number;
+
+  paginationOptions: {totalRecords: number, obsPerPage: number, currentPage: number, totalPages: number} = {
+    totalRecords: undefined,
+    obsPerPage: this.obsPerPage,
+    currentPage: 0,
+    totalPages: undefined
+  };
+
+  renderedObs: {first: any, last: any} = {
+    first: () => this.paginationOptions.currentPage * this.paginationOptions.obsPerPage ,
+    last:  () => this.paginationOptions.currentPage * this.paginationOptions.obsPerPage + this.paginationOptions.obsPerPage
+  }
+
 
   labels = {
     'cardcode': 'Cardcode',
@@ -24,20 +36,49 @@ export class TableComponent implements OnInit, OnChanges {
     'RFM_Current': 'Current RFM Score'
   }
 
-  constructor() {
-  }
+  constructor() { }
 
   ngOnInit() {
+    if(this.tableData) {
+      let totObs = this.paginationOptions.totalRecords;
+      let obsPP = this.paginationOptions.obsPerPage;
+      this.paginationOptions.totalPages = Math.round(totObs / obsPP +  ( (totObs % obsPP) / Math.max(totObs % obsPP, 1))) - 1;
+    }
   }
 
   ngOnChanges() {
-    this.totalRecords = this.tableData ? this.tableData.values.length : 0;
-    console.log("ONCHANGES TABLE: ", this.totalRecords);
+    console.log('TABLE CHANGE!');
+    if(this.tableData) {
+      this.updatePaginationOptions();
+    }
   }
 
-  test() {
-    console.log(this.tableData);
+  nextPage() {
+    if (this.paginationOptions.currentPage < this.paginationOptions.totalPages) {
+      this.paginationOptions.currentPage ++;
+      this.updatePaginationOptions();
+    }
   }
 
+  previousPage() {
+    if (this.paginationOptions.currentPage > 0) {
+      this.paginationOptions.currentPage --;
+      this.updatePaginationOptions();
+    }
+  }
 
+  updatePaginationOptions() {
+    this.paginationOptions.totalRecords = this.tableData.values.length;
+    let totObs = this.paginationOptions.totalRecords;
+    let obsPP = this.paginationOptions.obsPerPage;
+    this.paginationOptions.totalPages = Math.round(totObs / obsPP +  ( (totObs % obsPP) / Math.max(totObs % obsPP, 1)));
+
+    
+    console.log("ONCHANGES TABLE: ", this.paginationOptions.totalRecords, this.paginationOptions.totalPages);
+    console.log(this.renderedObs.first(), this.renderedObs.last());
+  }
+
+  test(){
+    console.log("WORKS!!!");
+  }
 }

@@ -1,9 +1,9 @@
-<md-card>
+<md-card *ngIf="queryStatus.success && !queryStatus.inProgress">
   <div id="demo">
 
     <!-- Responsive table starts here -->
     <!-- For correct display on small screens you must add 'data-title' to each 'td' in your table -->
-    <div class="table-responsive-vertical shadow-z-1  ">
+    <div class="table-responsive-vertical shadow-z-1">
     <!-- Table starts here -->
     <table id="table" class="table table-hover table-mc-light-blue table-bordered">
         <thead>
@@ -14,14 +14,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let row of tableData?.values">
+          <tr *ngFor="let row of tableData?.values.slice(renderedObs.first(), renderedObs.last())">
             <td *ngFor="let cell of row">
               {{cell}}
             </td>
           </tr>
         </tbody>
       </table>
-      <md-icon>navigate next</md-icon>
+      <button md-button (click)="previousPage()"><md-icon>navigate_before</md-icon></button>
+      <button md-button (click)="nextPage()"><md-icon>navigate_next</md-icon></button>
     </div>
   </div>
 </md-card>

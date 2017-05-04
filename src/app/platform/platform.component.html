@@ -20,7 +20,7 @@
       (doneQuery)="getData($event)" 
       (doneIndicatorQuery)="getIndicatorData($event)"
       (indicatorQueryStatus)="getIndicatorQueryStatus($event)"
-      (loadingTableInProgress)="dummyFn()"
+      (loadingTableInProgress)="getTableProgress($event)"
       (doneTableQuery)="getTableData($event)">  
     </rz-filter-group>
   </md-grid-tile>
@@ -51,7 +51,11 @@
       [colspan]="'7'"
       [rowspan]="'8'"
       [style.background]="'#white'">
-    <rz-table [tableData] = "tableQueryResults"></rz-table>
+    <rz-table 
+      [tableData] = "tableQueryResults"
+      [queryStatus] = "tableDataStatus">
+    </rz-table>
+      
   </md-grid-tile>
   <!--<md-grid-tile
       [colspan]="'1'"

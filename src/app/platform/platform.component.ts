@@ -17,13 +17,16 @@ export class PlatformComponent implements OnInit {
 
   private username: String;
   private queryResults: {headers: String[], values: String[]};
+
   private indicatorResults: {lostCusts: number, lostTotalSales: number, lostFreshSales: number};
+  private indicatorQueryInProgress: boolean = false;
+
   private tableQueryResults: {headers: String[], values: String[]};
+  private tableDataStatus: {success: boolean, inProgress: boolean} = {success: false, inProgress: false};
 
   private avgSalesIndicator: Indicator;
   private freshSalesIndicator: Indicator;
 
-  indicatorQueryInProgress: boolean = false;
 
   constructor(private query: QueryService) { }
 
@@ -60,7 +63,8 @@ export class PlatformComponent implements OnInit {
     this.freshSalesIndicator.setQueryStatus(this.indicatorQueryInProgress);
   }
 
-  dummyFn() {
-    
+  getTableProgress(obj) {
+    this.tableDataStatus = obj;
+    console.log(obj);
   }
 }
