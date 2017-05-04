@@ -1,9 +1,9 @@
-<md-card *ngIf="queryStatus.success && !queryStatus.inProgress">
+<md-card>
   <div id="demo">
 
     <!-- Responsive table starts here -->
     <!-- For correct display on small screens you must add 'data-title' to each 'td' in your table -->
-    <div class="table-responsive-vertical shadow-z-1">
+    <div class="table-responsive-vertical shadow-z-1" [ngClass]="{'loading': queryStatus.inProgress}">
     <!-- Table starts here -->
     <table id="table" class="table table-hover table-mc-light-blue table-bordered">
         <thead>
@@ -21,9 +21,21 @@
           </tr>
         </tbody>
       </table>
-      <button md-button (click)="previousPage()"><md-icon>navigate_before</md-icon></button>
-      <button md-button (click)="nextPage()"><md-icon>navigate_next</md-icon></button>
+      <div class="pagination-container" *ngIf="queryStatus.success && !queryStatus.inProgress">
+        <a class="pagination-button" (click)="previousPage()"><md-icon class="pagination-button">navigate_before</md-icon></a>
+        
+        <a class="pagination-page" 
+          *ngFor="let i of createRange()" 
+          [ngClass]="{'page-selected': i===paginationOptions.currentPage}"
+          (click)="customPage(i)">
+            {{i + 1}}
+        </a>
+        <a class="pagination-button" (click)="nextPage()"><md-icon>navigate_next</md-icon></a>
+      </div>
     </div>
+  </div>
+  <div>
+      <md-spinner *ngIf="queryStatus.inProgress" mode="indeterminate"></md-spinner>
   </div>
 </md-card>
   

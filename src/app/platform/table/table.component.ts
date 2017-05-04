@@ -3,12 +3,12 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 @Component({
   selector: 'rz-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.less']
+  styleUrls: ['./table.component.less', './table.component.css']
 })
 export class TableComponent implements OnInit, OnChanges {
 
   @Input() tableData: {headers: String[], values: String};
-  @Input() queryStatus: {success: boolean, inProgress: boolean} = {success: false, inProgress: false};
+  @Input() queryStatus: {success: boolean, inProgress: boolean, newQuery:boolean} = {success: false, inProgress: false, newQuery: false};
   @Input() obsPerPage = 15;
 
   paginationOptions: {totalRecords: number, obsPerPage: number, currentPage: number, totalPages: number} = {
@@ -67,18 +67,34 @@ export class TableComponent implements OnInit, OnChanges {
     }
   }
 
+  customPage(i:number) {
+    this.paginationOptions.currentPage = i;
+    this.updatePaginationOptions();
+  }
+
   updatePaginationOptions() {
+    if (this.queryStatus.newQuery === true) {
+      this.paginationOptions.currentPage = 0;
+      this.queryStatus.newQuery = false;
+    }
     this.paginationOptions.totalRecords = this.tableData.values.length;
-    let totObs = this.paginationOptions.totalRecords;
-    let obsPP = this.paginationOptions.obsPerPage;
+    const totObs = this.paginationOptions.totalRecords;
+    const obsPP = this.paginationOptions.obsPerPage;
     this.paginationOptions.totalPages = Math.round(totObs / obsPP +  ( (totObs % obsPP) / Math.max(totObs % obsPP, 1)));
 
-    
-    console.log("ONCHANGES TABLE: ", this.paginationOptions.totalRecords, this.paginationOptions.totalPages);
+    console.log('ONCHANGES TABLE: ', this.paginationOptions.totalRecords, this.paginationOptions.totalPages);
     console.log(this.renderedObs.first(), this.renderedObs.last());
   }
 
-  test(){
-    console.log("WORKS!!!");
+  createRange(){
+    let items: number[] = [];
+    let startIndex =  Math.max(0, this.paginationOptions.currentPage - 4);
+    let endIndex = Math.min(this.paginationOptions.totalPages, startIndex + 9);
+    for(let i = startIndex; i <=endIndex ; i++){
+      items.push(i);
+    }
+    console.log(items, this.paginationOptions.currentPage);
+    return items;
   }
+
 }

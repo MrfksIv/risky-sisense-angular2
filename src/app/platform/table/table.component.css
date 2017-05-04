@@ -1,0 +1,35 @@
+.pagination-button{
+    width:20px;
+    height:20px;
+    cursor: pointer; 
+}
+
+md-card {
+    padding: 6px 24px;
+}
+
+.pagination-page {
+    cursor: pointer;
+    line-height: 1.5em;
+    padding: 0 5px;
+}
+
+.page-selected {
+    text-decoration: underline;
+}
+
+.loading {
+    opacity: .3;
+}
+
+md-spinner {
+    opacity: 1;
+    top: 42%;
+    left: 42%;
+    position:absolute;
+
+    float: left; 
+    width: 24px; 
+    height: 24px; 
+    margin: 0 auto ; 
+}

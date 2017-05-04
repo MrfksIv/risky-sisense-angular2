@@ -22,7 +22,7 @@ export class PlatformComponent implements OnInit {
   private indicatorQueryInProgress: boolean = false;
 
   private tableQueryResults: {headers: String[], values: String[]};
-  private tableDataStatus: {success: boolean, inProgress: boolean} = {success: false, inProgress: false};
+  private tableDataStatus: {success: boolean, inProgress: boolean, newQuery: boolean} = {success: false, inProgress: false, newQuery: false};
 
   private avgSalesIndicator: Indicator;
   private freshSalesIndicator: Indicator;

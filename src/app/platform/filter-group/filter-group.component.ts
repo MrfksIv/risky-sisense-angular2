@@ -25,7 +25,7 @@ export class FilterGroupComponent implements OnInit {
 
   @Output() doneQuery = new EventEmitter<{headers: String[], values: String[]}>();
   @Output() indicatorQueryStatus = new EventEmitter<boolean>();
-  @Output() loadingTableInProgress = new EventEmitter<{success: boolean, inProgress: boolean}>();
+  @Output() loadingTableInProgress = new EventEmitter<{success: boolean, inProgress: boolean, newQuery: boolean}>();
   @Output() doneIndicatorQuery = new EventEmitter<{lostCusts: number, lostTotalSales: number,  lostFreshSales: number}>();
 
   @Output() doneTableQuery = new EventEmitter<{}>();
@@ -90,6 +90,8 @@ export class FilterGroupComponent implements OnInit {
           this.lostFreshSalesIndicator += parseFloat(elem[1]);
         });
 
+        this.getTableData();
+
         this.doneIndicatorQuery.emit({
           lostCusts: this.customerCountIndicator,
           lostTotalSales: this.lostTotalSalesIndicator,
@@ -103,15 +105,15 @@ export class FilterGroupComponent implements OnInit {
 
 
   getTableData() {
-    this.loadingTableInProgress.emit({success: undefined, inProgress: true});
+    this.loadingTableInProgress.emit({success: undefined, inProgress: true, newQuery: true});
     this.qs.getResults(this.RFMFiltersArray, this.FreshFiltersArray,
     GlobalVars.TABLE_DATA_QUERY_COLUMNS, this.avgSpending.selectedVal).toPromise()
     .then( (res) => {
-      this.loadingTableInProgress.emit({success: true, inProgress: false});
+      this.loadingTableInProgress.emit({success: true, inProgress: false, newQuery: true});
       this.doneTableQuery.emit(res.json());
     })
     .catch( err => {
-      this.loadingTableInProgress.emit({success: false, inProgress: false});
+      this.loadingTableInProgress.emit({success: false, inProgress: false, newQuery: true});
     });
   }
 }
