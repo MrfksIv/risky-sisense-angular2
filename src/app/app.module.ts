@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdButtonModule, MdCheckboxModule, MdMenuModule, MdIconModule,
   MdTabsModule, MdInputModule, MdGridListModule, MdToolbarModule,
   MdChipsModule, MdSliderModule, MdCardModule, MdProgressSpinnerModule,
-  MdSlideToggleModule } from '@angular/material';
+  MdSlideToggleModule, MdDialogModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -47,7 +47,7 @@ import { AuthAccessGuard } from './authentication/AuthGuard';
     MdButtonModule, MdCheckboxModule, MdMenuModule, MdIconModule,
     MdTabsModule, MdInputModule, MdGridListModule, MdToolbarModule,
     MdChipsModule, MdSliderModule, MdCardModule, MdProgressSpinnerModule,
-    MdSlideToggleModule
+    MdSlideToggleModule, MdDialogModule
 
   ],
   providers: [AuthService, QueryService, AuthAccessGuard],

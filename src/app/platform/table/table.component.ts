@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { MdDialog, MdDialogRef } from '@angular/material';
 
 @Component({
   selector: 'rz-table',
@@ -36,7 +37,7 @@ export class TableComponent implements OnInit, OnChanges {
     'RFM_Current': 'Current RFM Score'
   }
 
-  constructor() { }
+  constructor(public dialog: MdDialog) { }
 
   ngOnInit() {
     if(this.tableData) {
@@ -101,6 +102,11 @@ export class TableComponent implements OnInit, OnChanges {
     return `Rows ${this.paginationOptions.currentPage * this.paginationOptions.obsPerPage + 1}-
       ${Math.min(this.paginationOptions.currentPage * this.paginationOptions.obsPerPage + this.paginationOptions.obsPerPage, this.paginationOptions.totalRecords)}
       (${this.paginationOptions.totalRecords} Total)`;
+
+  }
+
+  openModal(data) {
+    console.log(data);
 
   }
 

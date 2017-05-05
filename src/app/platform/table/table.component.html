@@ -14,7 +14,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let row of tableData?.values.slice(renderedObs.first(), renderedObs.last())">
+          <tr *ngFor="let row of tableData?.values.slice(renderedObs.first(), renderedObs.last())"(click)="openModal(row[0])" #d>
             <td *ngFor="let cell of row">
               {{cell}}
             </td>
