@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MdDialog, MdDialogConfig } from '@angular/material';
+import { CustomerInfoModalComponent } from './customer-info-modal/customer-info-modal.component';
 
 @Component({
   selector: 'rz-table',
@@ -40,7 +41,7 @@ export class TableComponent implements OnInit, OnChanges {
   constructor(public dialog: MdDialog) { }
 
   ngOnInit() {
-    if(this.tableData) {
+    if (this.tableData) {
       let totObs = this.paginationOptions.totalRecords;
       let obsPP = this.paginationOptions.obsPerPage;
       this.paginationOptions.totalPages = Math.floor(totObs / obsPP + Math.min(totObs % obsPP, 1));
@@ -48,8 +49,8 @@ export class TableComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log('TABLE CHANGE!');
-    if(this.tableData) {
+    // console.log('TABLE CHANGE!');
+    if (this.tableData) {
       this.updatePaginationOptions();
     }
   }
@@ -83,8 +84,8 @@ export class TableComponent implements OnInit, OnChanges {
     const obsPP = this.paginationOptions.obsPerPage;
     this.paginationOptions.totalPages = Math.floor(totObs / obsPP + Math.min(totObs % obsPP, 1));
 
-    console.log('ONCHANGES TABLE: ', this.paginationOptions.totalRecords, this.paginationOptions.totalPages);
-    console.log(this.renderedObs.first(), this.renderedObs.last());
+    // console.log('ONCHANGES TABLE: ', this.paginationOptions.totalRecords, this.paginationOptions.totalPages);
+    // console.log(this.renderedObs.first(), this.renderedObs.last());
   }
 
   createRange(){
@@ -94,7 +95,7 @@ export class TableComponent implements OnInit, OnChanges {
     for(let i = startIndex; i < endIndex ; i++){
       items.push(i);
     }
-    console.log(items, this.paginationOptions.currentPage);
+    // console.log(items, this.paginationOptions.currentPage);
     return items;
   }
 
@@ -107,6 +108,9 @@ export class TableComponent implements OnInit, OnChanges {
 
   openModal(data) {
     console.log(data);
+    let config = new MdDialogConfig();
+    let dialogRef = this.dialog.open(CustomerInfoModalComponent, config);
+    dialogRef.componentInstance.customer = data;
 
   }
 

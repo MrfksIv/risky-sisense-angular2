@@ -19,6 +19,7 @@ import { CheckboxFilterComponent } from './platform/checkbox-filter/checkbox-fil
 import { FilterGroupComponent } from './platform/filter-group/filter-group.component';
 import { TableComponent } from './platform/table/table.component';
 import { IndicatorComponent } from './platform/indicator/indicator.component';
+import { CustomerInfoModalComponent } from './platform/table/customer-info-modal/customer-info-modal.component';
 
 import { AuthService } from './authentication/auth.service';
 import { QueryService } from './query/query.service';
@@ -35,7 +36,11 @@ import { AuthAccessGuard } from './authentication/AuthGuard';
     CheckboxFilterComponent,
     FilterGroupComponent,
     TableComponent,
-    IndicatorComponent
+    IndicatorComponent,
+    CustomerInfoModalComponent
+  ],
+  entryComponents:[
+    CustomerInfoModalComponent
   ],
   imports: [
     BrowserModule,
