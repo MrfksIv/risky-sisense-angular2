@@ -31,8 +31,10 @@
             {{i + 1}}
         </a>
         <a class="pagination-button" (click)="nextPage()"><md-icon>navigate_next</md-icon></a>
-      </div>
-    </div>
+        <span class="pull-right">
+          {{createPaginationSummary()}}  
+        </span>
+      </div></div>
   </div>
   <div>
       <md-spinner *ngIf="queryStatus.inProgress" mode="indeterminate"></md-spinner>

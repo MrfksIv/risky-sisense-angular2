@@ -24,12 +24,16 @@ md-card {
 
 md-spinner {
     opacity: 1;
-    top: 42%;
-    left: 42%;
+    top: 46%;
+    left: 46%;
     position:absolute;
 
     float: left; 
     width: 24px; 
     height: 24px; 
     margin: 0 auto ; 
+}
+
+.pull-right {
+    float: right;
 }

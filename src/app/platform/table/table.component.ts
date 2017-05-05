@@ -42,7 +42,7 @@ export class TableComponent implements OnInit, OnChanges {
     if(this.tableData) {
       let totObs = this.paginationOptions.totalRecords;
       let obsPP = this.paginationOptions.obsPerPage;
-      this.paginationOptions.totalPages = Math.round(totObs / obsPP +  ( (totObs % obsPP) / Math.max(totObs % obsPP, 1))) - 1;
+      this.paginationOptions.totalPages = Math.floor(totObs / obsPP + Math.min(totObs % obsPP, 1));
     }
   }
 
@@ -80,7 +80,7 @@ export class TableComponent implements OnInit, OnChanges {
     this.paginationOptions.totalRecords = this.tableData.values.length;
     const totObs = this.paginationOptions.totalRecords;
     const obsPP = this.paginationOptions.obsPerPage;
-    this.paginationOptions.totalPages = Math.round(totObs / obsPP +  ( (totObs % obsPP) / Math.max(totObs % obsPP, 1)));
+    this.paginationOptions.totalPages = Math.floor(totObs / obsPP + Math.min(totObs % obsPP, 1));
 
     console.log('ONCHANGES TABLE: ', this.paginationOptions.totalRecords, this.paginationOptions.totalPages);
     console.log(this.renderedObs.first(), this.renderedObs.last());
@@ -90,11 +90,18 @@ export class TableComponent implements OnInit, OnChanges {
     let items: number[] = [];
     let startIndex =  Math.max(0, this.paginationOptions.currentPage - 4);
     let endIndex = Math.min(this.paginationOptions.totalPages, startIndex + 9);
-    for(let i = startIndex; i <=endIndex ; i++){
+    for(let i = startIndex; i < endIndex ; i++){
       items.push(i);
     }
     console.log(items, this.paginationOptions.currentPage);
     return items;
+  }
+
+  createPaginationSummary() {
+    return `Rows ${this.paginationOptions.currentPage * this.paginationOptions.obsPerPage + 1}-
+      ${Math.min(this.paginationOptions.currentPage * this.paginationOptions.obsPerPage + this.paginationOptions.obsPerPage, this.paginationOptions.totalRecords)}
+      (${this.paginationOptions.totalRecords} Total)`;
+
   }
 
 }
